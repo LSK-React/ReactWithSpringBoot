@@ -232,7 +232,7 @@ mvn clean install
 
 pom.xml 안에 /build/plugins에 기존 plugin아래 추가
 
-<pre><code>
+<code>
 
     <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
@@ -253,16 +253,22 @@ pom.xml 안에 /build/plugins에 기존 plugin아래 추가
         </executions>
     </plugin>
     
-</code></pre>
+</code>
+
 추가후 
+
 기존 mvn spring-boot:run 했던 터미널창에서 ctrl + C 연타하여 서버 다운후 재가동.
+
 mvn clean install
 
 위 과정을 걸치면 projectDir/target/ jar파일이 생성됨.
+
 jar파일을 실행해봅시다.
 
 cd target/
+
 java -jar .\reactwithspringboot-0.0.1-SNAPSHOT.jar
 
 이렇게 되면 끝
+
 확인은 localhost:8080
