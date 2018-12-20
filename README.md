@@ -61,9 +61,11 @@
 </code>
 
 3. Controller설정
+
 --참고 vscode를 사용시 auto import는 alt + shift + O이다.
 
-<pre><code>
+<code>
+    
     package no.kantega.springandreact;
 
     import org.springframework.web.bind.annotation.GetMapping;
@@ -78,7 +80,8 @@
             return "Hello, the time at the server is now " + new Date() + "\n";
         }
     }
-</code></pre>
+    
+</code>
 
 4. mvn spring-boot:run실행
 
@@ -87,36 +90,47 @@
 npx create-react-app frontend
 
 6. http-proxy-middlewar를 추가한다. -개발시 필요함.
+
 기존에 spring-boot는 8080 port를 사용한다면 react의 경우 3000 port를 사용함. 개발시 3000 port에서 8080 port로 연결시켜주는 역활을 할 예정
 
 cd frontend 
+
 npm install --save http-proxy-middleware
 
 7. 리엑트 실행
+
 실행위치는 frontend 폴더 안이어야합니다.
+
 npm start
+
 초기 실행시에 시간이 걸릴 수 있습니다.
 
 8. proxy연결
+
 frontend/src/ setupProxy.js추가
+
 내용은
 
-<pre><code>
+<code>
+    
     const proxy = require('http-proxy-middleware')
 
     module.exports = function(app) {
         app.use(proxy('/', { target: 'http://localhost:8080/' }));
     }
-</code></pre>
+    
+</code>
 
 npm start
 
 연결 테스트 : curl http://localhost:3000/api/hello
 
 이제 연결됬는지 확인
+
 frontend/src/App.js파일을 열어 다음과 같이 수정
 
-<pre><code>
+<code>
+    
     import React, {Component} from 'react';
     import logo from './logo.svg';
     import './App.css';
@@ -153,14 +167,17 @@ frontend/src/App.js파일을 열어 다음과 같이 수정
     }
 
     export default App;
-</code></pre>
+    
+</code>
 
 화면이 제대로 바뀌면 성공
 
 9. 배포용 패키지 생성
+
 pom.xml 안에 /build/plugins에 기존 plugin아래 추가
 
-<pre><code>
+<code>
+    
     <plugin>
         <groupId>com.github.eirslett</groupId>
         <artifactId>frontend-maven-plugin</artifactId>
@@ -200,18 +217,23 @@ pom.xml 안에 /build/plugins에 기존 plugin아래 추가
             </execution>
         </executions>
     </plugin>
-</code></pre>
+    
+</code>
 
 추가후 
+
 기존 mvn spring-boot:run 했던 터미널창에서 ctrl + C 연타하여 서버 다운후 재가동.
+
 mvn clean install
 
 위 과정은 react파일을 spring boot에 포함시키기기 위해 빌드했습니다.
 
 10. 빌드된 파일 jar파일에 포함하기
+
 pom.xml 안에 /build/plugins에 기존 plugin아래 추가
 
 <pre><code>
+
     <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
@@ -230,6 +252,7 @@ pom.xml 안에 /build/plugins에 기존 plugin아래 추가
             </execution>
         </executions>
     </plugin>
+    
 </code></pre>
 추가후 
 기존 mvn spring-boot:run 했던 터미널창에서 ctrl + C 연타하여 서버 다운후 재가동.
