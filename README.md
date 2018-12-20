@@ -6,7 +6,7 @@
 위 사이트 방문 셋팅 후 dependency에 web추가
 
 2. pom.xml설정
-<pre><code>
+<code>
     <?xml version="1.0" encoding="UTF-8"?>
     <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -55,7 +55,7 @@
             </plugins>
         </build>
     </project>
-</code></pre>
+</code>
 
 3. Controller설정
 --참고 vscode를 사용시 auto import는 alt + shift + O이다.
